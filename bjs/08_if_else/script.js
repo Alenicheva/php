@@ -1,6 +1,14 @@
-let minValue = parseInt(prompt('Минимальное значение числа для игры','0'));
-let maxValue = parseInt(prompt('Максимальное значение числа для игры','100'));
+let minValue = parseInt(prompt('Минимальное значение числа для игры','-999'));
+let maxValue = parseInt(prompt('Максимальное значение числа для игры','999'));
 alert(`Загадайте любое целое число от ${minValue} до ${maxValue}, а я его угадаю`);
+if (minValue === NaN || 'false'){
+    minValue = -999;
+}
+console.log(minValue);
+if (maxValue === NaN || 'false'){
+    maxValue = 999;
+}
+console.log(maxValue);
 let answerNumber  = Math.floor((minValue + maxValue) / 2);
 let orderNumber = 1;
 let gameRun = true;
@@ -27,7 +35,9 @@ document.getElementById('btnOver').addEventListener('click', function () {
             gameRun = false;
         } else {
             minValue = answerNumber  + 1;
+            console.log(minValue);
             answerNumber  = Math.floor((minValue + maxValue) / 2);
+            console.log(answerNumber);
             orderNumber++;
             orderNumberField.innerText = orderNumber;
             answerField.innerText = `О, да это легко! \n\u{1F929} Вы загадали ${answerNumber }?`;
@@ -56,7 +66,9 @@ document.getElementById('btnLess').addEventListener('click', function () {
             gameRun = false;
             } else {
             maxValue = answerNumber  - 1;
+            console.log(maxValue);
             answerNumber  = Math.floor((minValue + maxValue) / 2);
+            console.log(answerNumber);
             orderNumber++;
             orderNumberField.innerText = orderNumber;
             answerField.innerText = `Наверное, загаданное Вами число ${answerNumber }? \n\u{1F609}`;
@@ -81,9 +93,17 @@ document.getElementById('btnEqual').addEventListener('click', function () {
 
 document.getElementById('btnRetry').addEventListener('click', function () {
     answerField.innerText = alert('Попробуем еще раз?\u{1F609}');
-    minValue = parseInt(prompt('Нужно задать минимальное значение числа для игры','0'));
-    maxValue = parseInt(prompt('Нужно задать максимальное значение числа для игры','100'));
+    minValue = parseInt(prompt('Нужно задать минимальное значение числа для игры','-999'));
+    maxValue = parseInt(prompt('Нужно задать максимальное значение числа для игры','999'));
     alert(`Загадайте любое целое число от ${minValue} до ${maxValue}, а я его угадаю`);
+    if (minValue === NaN || 'false'){
+        minValue = -999;
+    }
+    console.log(minValue);
+    if (maxValue === NaN || 'false'){
+        maxValue = 999;
+    }
+    console.log(maxValue);
     answerNumber  = Math.floor((minValue + maxValue) / 2);
     answerField.innerText = `Похоже, что Ваше число ${answerNumber }?`
     orderNumber++;
